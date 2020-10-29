@@ -4,7 +4,7 @@
   "description": "We are looking for a new members for our team. So, in order to know you a little bit we have created a challenge.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
