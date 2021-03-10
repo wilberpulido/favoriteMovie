@@ -1,7 +1,7 @@
 {
   "name": "movieapi",
   "version": "1.0.0",
-  "description": "",
+  "description": "An api to see reviews, recommendations, save favorite movies and movies to watch.",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
