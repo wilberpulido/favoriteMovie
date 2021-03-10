@@ -8,13 +8,13 @@ To install this project, you need to have npm.
 
 Once the main branch has been cloned, you must execute the following commands via console.
 
-````bash
+``` bash
 npm install
 ```
 
 ### With Docker
 
-````bash
+``` bash
 docker run -d -p 27017-27019:27017-27019 --name pruebademongo1 mongo
 ```
 ### Without Docker
@@ -23,7 +23,7 @@ Install mongoDB from the official site, and run the commands from console to sta
 
 It can be through an executable or using in console the command:
 
-````bash
+```bash
 mongo
 ```
 
@@ -55,13 +55,13 @@ Para instalar este proyecto, es necesario disponer de npm.
 
 Una vez clonada la rama main, debe ejecutar por consola los siguientes comandos.
 
-```bash
+``` bash
 npm install
 ```
 
 ### Con Docker
 
-```bash
+``` bash
 docker run -d -p 27017-27019:27017-27019 --name pruebademongo1 mongo
 ```
 ### Sin Docker
@@ -86,6 +86,6 @@ Puerto  localhost:3000/ para ver el index.
 
 Para correr en el puerto localhost:3000
 
-```bash
+``` bash
 npm run dev
 ```
