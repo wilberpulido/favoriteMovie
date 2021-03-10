@@ -3,18 +3,15 @@ const express = require("express");
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require("cors");
 
 const app = express();
 
+//cors
+app.use(cors);
+
 //connectting to db
-mongoose.connect('mongodb://localhost/wishList',{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-})
-    // .then(db => console.log(db))
-    .catch(err => console.log(err))
+require('./models/Connection');
 
 //importing router
 const indexRouter = require('./routes/index');
