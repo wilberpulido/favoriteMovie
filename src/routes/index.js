@@ -118,7 +118,7 @@ const filmModel = new Films(favoriteFilm[0]);
   res.redirect('/filmSearcher');
 })
 router.get('/removeFilm/:imdbID', async(req,res)=>{
-  await Films.remove({imdbID: req.params.imdbID})
+  await Films.deleteOne({imdbID: req.params.imdbID})
   res.redirect('/filmSearcher');
 })
 module.exports = router;
