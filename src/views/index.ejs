@@ -58,7 +58,7 @@
                             </div>
                             <div class="row d-flex justify-content-center align-items-center" style="height: 60px">
                                 <div class="col-">
-                                    <a href="<%= `http://localhost:3000/wishList/${film.imdbID}`%>" class="btn btn-danger" style="position: absolute; top: 390px; left: 50px;">Agregar</a>
+                                    <a href="<%= `/wishList/${film.imdbID}`%>" class="btn btn-danger" style="position: absolute; top: 390px; left: 50px;">Agregar</a>
                                 </div>
                             </div>
                     </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="row d-flex justify-content-center align-items-center" style="height: 60px;">
                             <div class="col-">
-                                <a href="<%= `http://localhost:3000/removeFilm/${wishListFilms.imdbID}`%>" class="btn btn-danger">Borrar</a>
+                                <a href="<%= `/removeFilm/${wishListFilms.imdbID}`%>" class="btn btn-danger">Borrar</a>
                             </div>
                         </div>
                     </div>
