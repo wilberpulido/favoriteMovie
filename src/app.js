@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost/wishList',{
     useFindAndModify: false,
     useCreateIndex: true,
 })
-    // .then(db => console.log(db))
+    .then(() => console.log("Base de datos conectada"))
     .catch(err => console.log(err))
 
 //importing router
