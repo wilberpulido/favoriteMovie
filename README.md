@@ -33,11 +33,11 @@ Mongodb port: localhost:27017
 db name: wishList
 Collection name: films
 
-Port localhost:3000/ to view the index.
+Port localhost:5000/ to view the index.
 
 ### Usage
 
-To run on port localhost:3000
+To run on port localhost:5000
 
 ``` bash
 npm run dev
@@ -80,11 +80,11 @@ Mongodb puerto: localhost:27017
 Nombre de db: wishList
 Nombre de coleccion: films
 
-Puerto  localhost:3000/ para ver el index.
+Puerto  localhost:5000/ para ver el index.
 
 ### Uso
 
-Para correr en el puerto localhost:3000
+Para correr en el puerto localhost:5000
 
 ``` bash
 npm run dev
