@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const Films = require('../models/Films');
+const listFilm = require('../models/ListFilm');
 let filmsArray = [];
 let page = 0;
 let title = '';
 
 async function getWishList () {
-  return await Films.find({});
+  return await listFilm.find({});
 }
 router.get('/', async(req,res)=>{
   filmsArray = [];
@@ -107,9 +107,9 @@ router.get('/filmSearcher', async(req,res)=>{
 })
 router.get('/wishList/:imdbID', async(req,res)=>{
 const favoriteFilm = filmsArray.filter(film => film.imdbID === req.params.imdbID);
-const filmModel = new Films(favoriteFilm[0]);
+const filmModel = new listFilm(favoriteFilm[0]);
   if (typeof filmModel.imdbID !== "undefined") {
-    await Films.find({imdbID: filmModel.imdbID}, async(err,docs)=>{
+    await listFilm.find({imdbID: filmModel.imdbID}, async(err,docs)=>{
       if (docs.length === 0) {
         await filmModel.save();
       }
@@ -118,7 +118,7 @@ const filmModel = new Films(favoriteFilm[0]);
   res.redirect('/filmSearcher');
 })
 router.get('/removeFilm/:imdbID', async(req,res)=>{
-  await Films.deleteOne({imdbID: req.params.imdbID})
+  await listFilm.deleteOne({imdbID: req.params.imdbID})
   res.redirect('/filmSearcher');
 })
 module.exports = router;

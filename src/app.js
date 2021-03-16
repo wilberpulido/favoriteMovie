@@ -1,20 +1,18 @@
 const path = require("path");
-const express = require("express");
 const morgan = require('morgan')
 const bodyParser = require('body-parser');
+const express = require("express");
 const app = express();
 
 //connectting to db
 require('./models/Connection');
 
 //importing router
-const indexRouter = require('./routes/index');
+const router = require('./config/routes/routes');
 
 //settings
 app.set('port', process.env.PORT || 5000);
 const PORT = app.get('port');
-app.set('views', path.join(__dirname,'views'));
-app.set('view engine','ejs');
 
 app.use(express.static(__dirname + "/src/public"));
 
@@ -25,9 +23,10 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 // To read JSON objects that send
 app.use(bodyParser.json());
+//use router
 
-//routers
-app.use('/',indexRouter);
+app.use("/",router);
+
 
 app.listen(PORT, ()=>{
     console.log(`Server on port ${PORT}`);
