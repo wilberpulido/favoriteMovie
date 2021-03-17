@@ -4,18 +4,18 @@ const Schema = mongoose.Schema;
 
 const ListfilmSchema = new Schema({
   playlistName: {
-    type:String,
+    type: String,
     required: true,
   },
   listType: {
-    type:String,
+    type: Number,
     required: true,
   },
   films:{
     type: [FilmSchema],
-    default: null,
+    default: undefined,
   } 
 });
 
-module.exports = mongoose.model('listFilm',ListfilmSchema);
+module.exports = ListfilmSchema;
 

@@ -1,8 +1,9 @@
-const path = require("path");
 const morgan = require('morgan')
 const bodyParser = require('body-parser');
 const express = require("express");
 const app = express();
+const dashboadRoutes = require('./middleware/dashboard');
+const verifyToken = require('./middleware/validate-token');
 
 //connectting to db
 require('./models/Connection');
@@ -23,8 +24,9 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 // To read JSON objects that send
 app.use(bodyParser.json());
+//verify token
+app.use('/api/dashboard', verifyToken, dashboadRoutes);
 //use router
-
 app.use("/",router);
 
 

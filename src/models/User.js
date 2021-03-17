@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const listFilm = require('./ListFilm');
+const ListfilmSchema = require('./ListFilm');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -7,23 +7,28 @@ const userSchema = new Schema({
         type: String,
         required: true,
         min: 6,
-        max: 255
+        max: 255,
     },
     email: {
         type: String,
         required: true,
         min: 6,
-        max: 1024
+        max: 255,
     },
     password: {
         type: String,
         required: true,
-        minlength: 6
+        minlength: 6,
+        max: 1024,
     },
-    date: {
+    dateRegister: {
         type: Date,
         default: Date.now
-    }
+    },
+    lists: {
+        type: [ListfilmSchema],
+        default: undefined,
+      } 
 })
 
 module.exports = mongoose.model('User', userSchema);

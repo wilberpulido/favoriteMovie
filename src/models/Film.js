@@ -17,4 +17,4 @@ const FilmSchema = new Schema({
     vote_count: Number,
 })
 
-module.exports = mongoose.model('film',FilmSchema);
+module.exports = FilmSchema;
