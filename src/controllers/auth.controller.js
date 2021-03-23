@@ -1,12 +1,13 @@
 const router = require('express').Router();
-const User = require("../models/User");
+const User = require("../models/schemesModels/User");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const schemaRegister = require('../models/schemesValidate/SchemaRegister');
-const schemaLogin = require('../models/schemesValidate/SchemaLogin');
+const schemaRegister = require('../config/schemesValidate/SchemaRegister');
+const schemaLogin = require('../config/schemesValidate/SchemaLogin');
 
 router.post('/register', async(req,res)=>{
+  const {firstName,lastName,email,passwordReq} = req.body;
   // validate user
   const {error} = schemaRegister.validate(req.body)
   if (error) {
@@ -17,19 +18,15 @@ router.post('/register', async(req,res)=>{
   const isEmailExist = await User.findOne({ email: req.body.email });
   if (isEmailExist) {
     return res.status(400).json(
-        {error: 'Email ya registrado'}
+      {error: 'Email ya registrado'}
     ) 
   }
   const salt = await bcrypt.genSalt(10);
-  const password = await bcrypt.hash(req.body.password, salt);
-  const user = new User({
-    name: req.body.name, 
-    email: req.body.email,
-    password: password,
-  });
+  const password = await bcrypt.hash(passwordReq, salt);
+  const user = new User({firstName,lastName,email,password});
   try {
     const userDB = await user.save();
-    return res.json({
+    return res.status(200).json({
       error: null,
       data: userDB,
     })
@@ -49,10 +46,10 @@ router.post('/login', async (req, res) => {
   if (!validPassword) return res.status(400).json({ error: 'contraseña no válida'})
   //create toker
   const token = jwt.sign({
-    name: userDB.name,
+    firstName: userDB.firstName,
+    lastName: userDB.lastName,
     id: userDB._id,
   },process.env.TOKEN_SECRET);
-
   return res.header('auth-token',token).json({
       error: null,
       data:{token}

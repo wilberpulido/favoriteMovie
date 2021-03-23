@@ -11,6 +11,10 @@ const ListfilmSchema = new Schema({
     type: Number,
     required: true,
   },
+  details: {
+    type: String,
+    require: true,
+  },
   films:{
     type: [FilmSchema],
     default: undefined,
