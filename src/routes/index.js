@@ -75,7 +75,7 @@ router.get('/filmSearcher/:page',async(req,res)=>{
     wishList: wishList,
     validate: [validate,notFirstPage,validateNextPage],
     page: page,
- });
+  });
 })
 router.get('/directory/:direction', async(req,res)=>{
   const direction = req.params.direction;
