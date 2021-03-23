@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const morgan = require('morgan')
-const bodyParser = require('body-parser');
 const app = express();
 
 //connectting to db
@@ -24,7 +23,7 @@ app.use(morgan('dev'));
 // to read body for request
 app.use(express.urlencoded({extended: false}));
 // To read JSON objects that send
-app.use(bodyParser.json());
+app.use(express.json());
 
 //routers
 app.use('/',indexRouter);

@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-const connectionString = "mongodb+srv://wilberOrg:DuLZh7AV9VSvRS61@cluster0.qtznt.mongodb.net/wishList?retryWrites=true&w=majority";
-
+const uri = `mongodb+srv://${process.env.USERMONGO}:${process.env.PASSWORD}@cluster0.qtznt.mongodb.net/wishList?retryWrites=true&w=majority`;
+const opcionals = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+}
 async function connect(){ 
-  return await mongoose.connect(connectionString,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-})
+  return await mongoose.connect(uri,opcionals)
 }
 connect()
 .then(() => {
