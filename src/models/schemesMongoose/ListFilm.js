@@ -1,25 +1,24 @@
-const mongoose = require('mongoose');
-const FilmSchema = require('./Film');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const FilmSchema = require('./Film')
+const Schema = mongoose.Schema
 
 const ListfilmSchema = new Schema({
   playlistName: {
     type: String,
-    required: true,
+    required: true
   },
   listType: {
     type: Number,
-    required: true,
+    required: true
   },
   details: {
     type: String,
-    require: true,
+    require: true
   },
-  films:{
+  films: {
     type: [FilmSchema],
-    default: undefined,
-  } 
-});
+    default: undefined
+  }
+})
 
-module.exports = ListfilmSchema;
-
+module.exports = ListfilmSchema

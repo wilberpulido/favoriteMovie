@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('@hapi/joi')
 
 const schemaRegister = Joi.object({
   firstName: Joi.string().min(6).max(255).required(),
@@ -7,4 +7,4 @@ const schemaRegister = Joi.object({
   password: Joi.string().min(6).max(1024).required()
 })
 
-module.exports = schemaRegister;
+module.exports = schemaRegister

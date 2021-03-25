@@ -1,57 +1,57 @@
-const router = require('express').Router();
-const User = require("../models/schemesModels/User");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const schemaRegister = require('../config/schemesValidate/SchemaRegister');
-const schemaLogin = require('../config/schemesValidate/SchemaLogin');
+const router = require('express').Router()
+const User = require('../models/schemesModels/User')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const schemaRegister = require('../config/schemesValidate/SchemaRegister')
+const schemaLogin = require('../config/schemesValidate/SchemaLogin')
 
-router.post('/register', async(req,res)=>{
-  const {firstName,lastName,email,passwordReq} = req.body;
+router.post('/register', async (req, res) => {
+  const { firstName, lastName, email, passwordReq } = req.body
   // validate user
-  const {error} = schemaRegister.validate(req.body)
+  const { error } = schemaRegister.validate(req.body)
   if (error) {
     return res.status(400).json(
-      {error: error.details[0].message}
+      { error: error.details[0].message }
     )
   }
-  const isEmailExist = await User.findOne({ email: req.body.email });
+  const isEmailExist = await User.findOne({ email: req.body.email })
   if (isEmailExist) {
     return res.status(400).json(
-      {error: 'Email ya registrado'}
-    ) 
+      { error: 'Email ya registrado' }
+    )
   }
-  const salt = await bcrypt.genSalt(10);
-  const password = await bcrypt.hash(passwordReq, salt);
-  const user = new User({firstName,lastName,email,password});
+  const salt = await bcrypt.genSalt(10)
+  const password = await bcrypt.hash(passwordReq, salt)
+  const user = new User({ firstName, lastName, email, password })
   try {
-    const userDB = await user.save();
+    const userDB = await user.save()
     return res.status(200).json({
       error: null,
-      data: userDB,
+      data: userDB
     })
   } catch (error) {
-    return res.status(400).json({error});
+    return res.status(400).json({ error })
   }
 })
 router.post('/login', async (req, res) => {
   // validaciones
-  const {error} = schemaLogin.validate(req.body);
+  const { error } = schemaLogin.validate(req.body)
   if (error) return res.status(400).json({ error: error.details[0].message })
-  
-  const userDB = await User.findOne({ email: req.body.email });
-  if (!userDB) return res.status(400).json({ error: 'Usuario no encontrado'});
 
-  const validPassword = await bcrypt.compare(req.body.password, userDB.password);
-  if (!validPassword) return res.status(400).json({ error: 'contraseña no válida'})
-  //create toker
+  const userDB = await User.findOne({ email: req.body.email })
+  if (!userDB) return res.status(400).json({ error: 'Usuario no encontrado' })
+
+  const validPassword = await bcrypt.compare(req.body.password, userDB.password)
+  if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
+  // create toker
   const token = jwt.sign({
     firstName: userDB.firstName,
     lastName: userDB.lastName,
-    id: userDB._id,
-  },process.env.TOKEN_SECRET);
-  return res.header('auth-token',token).json({
+    id: userDB._id
+  }, process.env.TOKEN_SECRET)
+  return res.header('auth-token', token).json({
     error: null,
-    data:{token}
+    data: { token }
   })
 })
-module.exports = router;
+module.exports = router

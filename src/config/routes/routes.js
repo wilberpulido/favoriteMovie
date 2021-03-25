@@ -1,9 +1,9 @@
-const router = require("express").Router();
+const router = require('express').Router()
 
-const searchRouter = require('../../controllers/search.controller');
-const authRouter = require('../../controllers/auth.controller');
+const searchRouter = require('../../controllers/search.controller')
+const authRouter = require('../../controllers/auth.controller')
 
-router.use('/api/search',searchRouter);
-router.use('/api/auth',authRouter);
+router.use('/api/search', searchRouter)
+router.use('/api/auth', authRouter)
 
-module.exports = router;
+module.exports = router

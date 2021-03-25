@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require('express').Router()
 // const axios = require('axios');
 // const listFilm = require('../models/ListFilm');
 // let filmsArray = [];
@@ -120,4 +120,4 @@ const router = require('express').Router();
 //   await listFilm.deleteOne({imdbID: req.params.imdbID})
 //   res.redirect('/filmSearcher');
 // })
-module.exports = router;
+module.exports = router
