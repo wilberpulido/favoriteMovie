@@ -6,6 +6,7 @@ const schemaRegister = require('../config/schemesValidate/SchemaRegister')
 const schemaLogin = require('../config/schemesValidate/SchemaLogin')
 
 router.post('/register', async (req, res) => {
+  console.log(req.body)
   const { firstName, lastName, email, passwordReq } = req.body
   // validate user
   const { error } = schemaRegister.validate(req.body)
