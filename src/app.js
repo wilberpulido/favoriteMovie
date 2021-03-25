@@ -1,6 +1,6 @@
 const morgan = require('morgan')
-const bodyParser = require('body-parser');
 const express = require("express");
+const cors = requiere('cors');
 const app = express();
 const dashboadRoutes = require('./middleware/dashboard');
 const verifyToken = require('./middleware/validate-token');
@@ -16,10 +16,10 @@ app.use(express.static(__dirname + "/src/public"));
 //midlewares
 // to view request
 app.use(morgan('dev'));
-// to read body for request
-// app.use(express.urlencoded({extended: false}));
 // To read JSON objects that send
 app.use(express.json());
+//enable corn
+app.use(cors());
 //verify token
 app.use('/api/dashboard', verifyToken, dashboadRoutes);
 //use router

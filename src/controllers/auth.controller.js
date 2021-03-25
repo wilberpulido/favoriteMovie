@@ -2,7 +2,6 @@ const router = require('express').Router();
 const User = require("../models/schemesModels/User");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const schemaRegister = require('../config/schemesValidate/SchemaRegister');
 const schemaLogin = require('../config/schemesValidate/SchemaLogin');
 
@@ -51,8 +50,8 @@ router.post('/login', async (req, res) => {
     id: userDB._id,
   },process.env.TOKEN_SECRET);
   return res.header('auth-token',token).json({
-      error: null,
-      data:{token}
+    error: null,
+    data:{token}
   })
 })
 module.exports = router;
