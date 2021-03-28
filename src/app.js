@@ -20,7 +20,12 @@ app.use(morgan('dev'))
 // To read JSON objects that send
 app.use(express.json())
 // enable corn
-app.use(cors())
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  }))
 // verify token
 app.use('/api/dashboard', verifyToken, dashboadRoutes)
 // use router

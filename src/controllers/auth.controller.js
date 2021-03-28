@@ -7,22 +7,23 @@ const schemaLogin = require('../config/schemesValidate/SchemaLogin')
 
 router.post('/register', async (req, res) => {
   console.log(req.body)
-  const { firstName, lastName, email, passwordReq } = req.body
+  let { firstName, lastName, email, password } = req.body
   // validate user
+
   const { error } = schemaRegister.validate(req.body)
   if (error) {
     return res.status(400).json(
       { error: error.details[0].message }
     )
   }
-  const isEmailExist = await User.findOne({ email: req.body.email })
+  const isEmailExist = await User.findOne({ email: email })
   if (isEmailExist) {
     return res.status(400).json(
       { error: 'Email ya registrado' }
     )
   }
   const salt = await bcrypt.genSalt(10)
-  const password = await bcrypt.hash(passwordReq, salt)
+  password = await bcrypt.hash(password, salt)
   const user = new User({ firstName, lastName, email, password })
   try {
     const userDB = await user.save()
