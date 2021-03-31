@@ -5,6 +5,8 @@ const path = require('path')
 const app = express()
 const dashboadRoutes = require('./middleware/dashboard')
 const verifyToken = require('./middleware/validate-token')
+require('dotenv').config()
+
 
 // connectting to db
 require('./config/Connection')
@@ -21,11 +23,9 @@ app.use(morgan('dev'))
 app.use(express.json())
 // enable corn
 app.use(cors({
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
+    "origin": process.env.HOST,
     "optionsSuccessStatus": 204
-  }))
+}))
 // verify token
 app.use('/api/dashboard', verifyToken, dashboadRoutes)
 // use router
