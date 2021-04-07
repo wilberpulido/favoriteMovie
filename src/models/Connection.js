@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-require('dotenv').config()
+// require('dotenv').config()
 
-const uri = `mongodb+srv://${process.env.USERMONGO}:${process.env.PASSWORD}@cluster0.qtznt.mongodb.net/wishList?retryWrites=true&w=majority`;
+const uri = 'mongodb://localhost/wishList';
 const opcionals = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
