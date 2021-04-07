@@ -15,7 +15,7 @@ const PORT = app.get('port');
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
 
-app.use(express.static(__dirname + "/src/public"));
+//app.use(express.static(__dirname + "/src/public"));
 
 //midlewares
 // to view request
