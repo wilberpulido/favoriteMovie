@@ -7,7 +7,6 @@ const dashboadRoutes = require('./middleware/dashboard')
 const verifyToken = require('./middleware/validate-token')
 require('dotenv').config()
 
-
 // connectting to db
 require('./config/Connection')
 
@@ -23,8 +22,8 @@ app.use(morgan('dev'))
 app.use(express.json())
 // enable corn
 app.use(cors({
-    "origin": process.env.HOST,
-    "optionsSuccessStatus": 204
+  origin: process.env.HOST,
+  optionsSuccessStatus: 204
 }))
 // verify token
 app.use('/api/dashboard', verifyToken, dashboadRoutes)
